@@ -4765,6 +4765,75 @@ padding:1.2rem;
   </div>
 </footer>
 
+<style>
+  .music-btn{
+position:fixed;
+bottom:20px;
+right:20px;
+
+width:55px;
+height:55px;
+
+border:none;
+border-radius:50%;
+
+background:linear-gradient(135deg,#ff6a88,#ff9472);
+color:white;
+font-size:20px;
+
+cursor:pointer;
+
+box-shadow:0 5px 15px rgba(0,0,0,0.25);
+
+transition:all .3s ease;
+z-index:999;
+}
+
+.music-btn:hover{
+transform:scale(1.1);
+}
+
+.music-btn.playing{
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 0 0 rgba(255,120,120,0.7)}
+70%{box-shadow:0 0 0 15px rgba(255,120,120,0)}
+100%{box-shadow:0 0 0 0 rgba(255,120,120,0)}
+}
+</style>
+<!-- AUDIO -->
+<audio id="weddingMusic" loop>
+  <source src="audio/music.MP3" type="audio/mpeg">
+</audio>
+
+<!-- PLAY BUTTON -->
+<button id="musicToggle" class="music-btn">
+  ▶
+</button>
+<script>
+  const music = document.getElementById("weddingMusic");
+const btn = document.getElementById("musicToggle");
+
+btn.addEventListener("click", () => {
+
+if(music.paused){
+    music.play();
+    btn.innerHTML = "⏸";
+    btn.classList.add("playing");
+}else{
+    music.pause();
+    btn.innerHTML = "▶";
+    btn.classList.remove("playing");
+}
+
+});
+</script>
+
+
+
+
 <script>
   // Update year
   document.getElementById('year').textContent = new Date().getFullYear();
