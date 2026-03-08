@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>eternal vows · cinematic wedding hero (animated shapes)</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -3788,6 +3788,9 @@ padding:1.2rem;
     }
   </style>
 <!-- ==================== GALLERY SECTION ==================== -->
+
+
+<!-- ==================== GALLERY SECTION ==================== -->
 <section class="gallery-section">
   <div class="gallery-header">
     <div class="gallery-header-subtitle">Our Memories</div>
@@ -3805,77 +3808,10 @@ padding:1.2rem;
           <div class="gallery-item-label">Engagement</div>
         </div>
       </div>
-      <div class="gallery-item" data-index="0">
-        <img src="images/2.jpg" alt="Wedding Photo 1" loading="lazy">
-        <div class="gallery-item-overlay">
-          <div class="gallery-item-label">Engagement</div>
-        </div>
-      </div>
-      <div class="gallery-item" data-index="0">
-        <img src="images/3.jpg" alt="Wedding Photo 1" loading="lazy">
-        <div class="gallery-item-overlay">
-          <div class="gallery-item-label">Engagement</div>
-        </div>
-      </div>
-      <div class="gallery-item" data-index="0">
-        <img src="images/4.jpg" alt="Wedding Photo 1" loading="lazy">
-        <div class="gallery-item-overlay">
-          <div class="gallery-item-label">Engagement</div>
-        </div>
-      </div>
-      <div class="gallery-item" data-index="0">
-        <img src="images/5.jpg" alt="Wedding Photo 1" loading="lazy">
-        <div class="gallery-item-overlay">
-          <div class="gallery-item-label">Engagement</div>
-        </div>
-      </div>
-      <div class="gallery-item" data-index="0">
-        <img src="images/6.png" alt="Wedding Photo 1" loading="lazy">
-        <div class="gallery-item-overlay">
-          <div class="gallery-item-label">Engagement</div>
-        </div>
-      </div>
-      <div class="gallery-item" data-index="0">
-        <img src="images/7.png" alt="Wedding Photo 1" loading="lazy">
-        <div class="gallery-item-overlay">
-          <div class="gallery-item-label">Engagement</div>
-        </div>
-      </div>
-      <div class="gallery-item" data-index="0">
-        <img src="images/8.jpg" alt="Wedding Photo 1" loading="lazy">
-        <div class="gallery-item-overlay">
-          <div class="gallery-item-label">Engagement</div>
-        </div>
-      </div>
-      <div class="gallery-item" data-index="0">
-        <img src="images/9.jpg" alt="Wedding Photo 1" loading="lazy">
-        <div class="gallery-item-overlay">
-          <div class="gallery-item-label">Engagement</div>
-        </div>
-      </div>
-      <div class="gallery-item" data-index="0">
-        <img src="images/10.jpg" alt="Wedding Photo 1" loading="lazy">
-        <div class="gallery-item-overlay">
-          <div class="gallery-item-label">Engagement</div>
-        </div>
-      </div>
-      <div class="gallery-item" data-index="0">
-        <img src="images/11.jpg" alt="Wedding Photo 1" loading="lazy">
-        <div class="gallery-item-overlay">
-          <div class="gallery-item-label">Engagement</div>
-        </div>
-      </div>
- 
-      <div class="gallery-item" data-index="0">
-        <img src="images/12.jpg" alt="Wedding Photo 1" loading="lazy">
-        <div class="gallery-item-overlay">
-          <div class="gallery-item-label">Engagement</div>
-        </div>
-      </div>
- 
+      <!-- Add all your other gallery items here -->
     </div>
 
-    <!-- Carousel Controls -->
+    <!-- Carousel Controls - Hide on mobile if needed -->
     <div class="carousel-controls">
       <button class="carousel-btn" id="prevBtn">
         <i class="fas fa-chevron-left"></i>
@@ -3933,210 +3869,309 @@ padding:1.2rem;
 
 <script>
   // Gallery Configuration
-  const carousel = document.getElementById('owlCarousel');
-  const items = document.querySelectorAll('.gallery-item');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const previewModal = document.getElementById('previewModal');
-  const previewImage = document.getElementById('previewImage');
-  const previewCounter = document.getElementById('previewCounter');
-  const closePreview = document.getElementById('closePreview');
-  const previewPrev = document.getElementById('previewPrev');
-  const previewNext = document.getElementById('previewNext');
-  const indicatorsContainer = document.getElementById('indicators');
+  document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.getElementById('owlCarousel');
+    const items = document.querySelectorAll('.gallery-item');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const previewModal = document.getElementById('previewModal');
+    const previewImage = document.getElementById('previewImage');
+    const previewCounter = document.getElementById('previewCounter');
+    const closePreview = document.getElementById('closePreview');
+    const previewPrev = document.getElementById('previewPrev');
+    const previewNext = document.getElementById('previewNext');
+    const indicatorsContainer = document.getElementById('indicators');
 
-  let currentIndex = 0;
-  let autoplayInterval;
-  let touchStartX = 0;
-  let touchEndX = 0;
-  const totalItems = items.length;
+    if (!carousel || items.length === 0) return;
 
-  // Initialize indicators
-  function initIndicators() {
-    items.forEach((_, index) => {
-      const indicator = document.createElement('div');
-      indicator.className = 'indicator' + (index === 0 ? ' active' : '');
-      indicator.addEventListener('click', () => goToSlide(index));
-      indicatorsContainer.appendChild(indicator);
+    let currentIndex = 0;
+    let autoplayInterval;
+    const totalItems = items.length;
+    let itemsPerView = getItemsPerView();
+
+    // Get number of items to show based on screen size
+    function getItemsPerView() {
+      if (window.innerWidth < 500) return 2;
+      if (window.innerWidth < 768) return 2;
+      if (window.innerWidth < 1024) return 3;
+      return 4;
+    }
+
+    // Initialize indicators
+    function initIndicators() {
+      if (!indicatorsContainer) return;
+      indicatorsContainer.innerHTML = '';
+      const numIndicators = Math.ceil(totalItems / itemsPerView);
+      
+      for (let i = 0; i < numIndicators; i++) {
+        const indicator = document.createElement('div');
+        indicator.className = 'indicator' + (i === 0 ? ' active' : '');
+        indicator.addEventListener('click', () => goToSlide(i * itemsPerView));
+        indicatorsContainer.appendChild(indicator);
+      }
+    }
+
+    // Update carousel position
+    function updateCarousel() {
+      const itemWidth = items[0].offsetWidth + 24; // width + gap
+      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+      let targetScroll = currentIndex * itemWidth;
+      
+      // Ensure we don't scroll too far
+      targetScroll = Math.min(targetScroll, maxScroll);
+      
+      carousel.scrollTo({
+        left: targetScroll,
+        behavior: 'smooth'
+      });
+      
+      updateIndicators();
+    }
+
+    // Update indicators
+    function updateIndicators() {
+      if (!indicatorsContainer) return;
+      const indicators = indicatorsContainer.querySelectorAll('.indicator');
+      const activeIndex = Math.floor(currentIndex / itemsPerView);
+      
+      indicators.forEach((ind, index) => {
+        ind.classList.toggle('active', index === activeIndex);
+      });
+    }
+
+    // Go to specific slide
+    function goToSlide(index) {
+      currentIndex = Math.min(index, totalItems - itemsPerView);
+      currentIndex = Math.max(0, currentIndex);
+      updateCarousel();
+    }
+
+    // Next slide
+    function nextSlide() {
+      const maxIndex = Math.max(0, totalItems - itemsPerView);
+      currentIndex = Math.min(currentIndex + itemsPerView, maxIndex);
+      updateCarousel();
+    }
+
+    // Previous slide
+    function prevSlide() {
+      currentIndex = Math.max(currentIndex - itemsPerView, 0);
+      updateCarousel();
+    }
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      itemsPerView = getItemsPerView();
+      initIndicators();
+      currentIndex = Math.min(currentIndex, totalItems - itemsPerView);
+      currentIndex = Math.max(0, currentIndex);
+      updateCarousel();
     });
-  }
 
-  // Update carousel position
-  function updateCarousel() {
-    const itemWidth = carousel.offsetWidth / 4; // 4 items visible
-    carousel.scrollLeft = currentIndex * (itemWidth + 24); // 24px gap
-    updateIndicators();
-  }
+    // Autoplay
+    function startAutoplay() {
+      if (autoplayInterval) clearInterval(autoplayInterval);
+      autoplayInterval = setInterval(() => {
+        const maxIndex = Math.max(0, totalItems - itemsPerView);
+        if (currentIndex >= maxIndex) {
+          currentIndex = 0;
+        } else {
+          currentIndex = Math.min(currentIndex + itemsPerView, maxIndex);
+        }
+        updateCarousel();
+      }, 5000);
+    }
 
-  // Update indicators
-  function updateIndicators() {
-    document.querySelectorAll('.indicator').forEach((ind, index) => {
-      ind.classList.toggle('active', index === currentIndex);
+    function resetAutoplay() {
+      clearInterval(autoplayInterval);
+      startAutoplay();
+    }
+
+    // Event listeners - Carousel controls
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        prevSlide();
+        resetAutoplay();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        nextSlide();
+        resetAutoplay();
+      });
+    }
+
+    // Touch/Swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    carousel.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const swipeThreshold = 50;
+      
+      if (touchStartX - touchEndX > swipeThreshold) {
+        nextSlide();
+      } else if (touchEndX - touchStartX > swipeThreshold) {
+        prevSlide();
+      }
+      resetAutoplay();
+    }, { passive: true });
+
+    // Gallery item click - Open preview
+    items.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        currentIndex = index;
+        openPreview(index);
+      });
     });
-  }
 
-  // Go to specific slide
-  function goToSlide(index) {
-    currentIndex = index;
-    updateCarousel();
-    resetAutoplay();
-  }
-
-  // Next slide
-  function nextSlide() {
-    currentIndex = (currentIndex + 1) % totalItems;
-    updateCarousel();
-  }
-
-  // Previous slide
-  function prevSlide() {
-    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-    updateCarousel();
-  }
-
-  // Autoplay
-  function startAutoplay() {
-    autoplayInterval = setInterval(nextSlide, 5000);
-  }
-
-  function resetAutoplay() {
-    clearInterval(autoplayInterval);
+    // Initialize
+    initIndicators();
     startAutoplay();
-  }
 
-  // Event listeners - Carousel controls
-  prevBtn.addEventListener('click', () => {
-    prevSlide();
-    resetAutoplay();
-  });
+    // Pause autoplay on hover/touch
+    carousel.addEventListener('mouseenter', () => {
+      clearInterval(autoplayInterval);
+    });
 
-  nextBtn.addEventListener('click', () => {
-    nextSlide();
-    resetAutoplay();
-  });
+    carousel.addEventListener('mouseleave', () => {
+      startAutoplay();
+    });
 
-  // Gallery item click - Open preview
-  items.forEach((item, index) => {
-    item.addEventListener('click', () => {
+    carousel.addEventListener('touchstart', () => {
+      clearInterval(autoplayInterval);
+    });
+
+    carousel.addEventListener('touchend', () => {
+      startAutoplay();
+    });
+
+    // Preview modal functions
+    function openPreview(index) {
+      if (!previewModal || !previewImage || !previewCounter) return;
+      
       currentIndex = index;
-      openPreview(index);
+      updatePreview();
+      previewModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModalPreview() {
+      if (!previewModal) return;
+      previewModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    function updatePreview() {
+      if (!previewImage || !previewCounter) return;
+      const img = items[currentIndex].querySelector('img');
+      previewImage.src = img.src;
+      previewCounter.textContent = `${currentIndex + 1} / ${totalItems}`;
+    }
+
+    // Preview navigation
+    if (previewNext) {
+      previewNext.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % totalItems;
+        updatePreview();
+      });
+    }
+
+    if (previewPrev) {
+      previewPrev.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+        updatePreview();
+      });
+    }
+
+    if (closePreview) {
+      closePreview.addEventListener('click', closeModalPreview);
+    }
+
+    if (previewModal) {
+      previewModal.addEventListener('click', (e) => {
+        if (e.target === previewModal) closeModalPreview();
+      });
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (!previewModal || !previewModal.classList.contains('active')) return;
+      
+      if (e.key === 'ArrowRight') {
+        currentIndex = (currentIndex + 1) % totalItems;
+        updatePreview();
+      } else if (e.key === 'ArrowLeft') {
+        currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+        updatePreview();
+      } else if (e.key === 'Escape') {
+        closeModalPreview();
+      }
     });
-  });
 
-  // Preview modal functions
-  function openPreview(index) {
-    currentIndex = index;
-    updatePreview();
-    previewModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
+    // Preview touch navigation
+    if (previewImage) {
+      let previewTouchStart = 0;
+      let previewTouchEnd = 0;
 
-  function closeModalPreview() {
-    previewModal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
+      previewImage.addEventListener('touchstart', (e) => {
+        previewTouchStart = e.changedTouches[0].screenX;
+      }, { passive: true });
 
-  function updatePreview() {
-    const img = items[currentIndex].querySelector('img');
-    previewImage.src = img.src;
-    previewCounter.textContent = `${currentIndex + 1} / ${totalItems}`;
-  }
-
-  // Preview navigation
-  previewNext.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % totalItems;
-    updatePreview();
-  });
-
-  previewPrev.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-    updatePreview();
-  });
-
-  closePreview.addEventListener('click', closeModalPreview);
-  previewModal.addEventListener('click', (e) => {
-    if (e.target === previewModal) closeModalPreview();
-  });
-
-  // Keyboard navigation
-  document.addEventListener('keydown', (e) => {
-    if (!previewModal.classList.contains('active')) return;
-    if (e.key === 'ArrowRight') {
-      currentIndex = (currentIndex + 1) % totalItems;
-      updatePreview();
-    } else if (e.key === 'ArrowLeft') {
-      currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-      updatePreview();
-    } else if (e.key === 'Escape') {
-      closeModalPreview();
+      previewImage.addEventListener('touchend', (e) => {
+        previewTouchEnd = e.changedTouches[0].screenX;
+        const swipeThreshold = 50;
+        
+        if (previewTouchStart - previewTouchEnd > swipeThreshold) {
+          currentIndex = (currentIndex + 1) % totalItems;
+          updatePreview();
+        } else if (previewTouchEnd - previewTouchStart > swipeThreshold) {
+          currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+          updatePreview();
+        }
+      }, { passive: true });
     }
-  });
 
-  // Touch/Swipe support for preview
-  let touchStart = 0;
-  let touchEnd = 0;
+    // Control buttons
+    const downloadBtn = document.getElementById('downloadBtn');
+    const shareBtn = document.getElementById('shareBtn');
+    const zoomBtn = document.getElementById('zoomBtn');
 
-  previewImage.addEventListener('touchstart', (e) => {
-    touchStart = e.changedTouches[0].screenX;
-  }, false);
-
-  previewImage.addEventListener('touchend', (e) => {
-    touchEnd = e.changedTouches[0].screenX;
-    handleSwipe();
-  }, false);
-
-  function handleSwipe() {
-    if (touchStart - touchEnd > 50) {
-      // Swiped left
-      currentIndex = (currentIndex + 1) % totalItems;
-      updatePreview();
-    } else if (touchEnd - touchStart > 50) {
-      // Swiped right
-      currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-      updatePreview();
+    if (downloadBtn) {
+      downloadBtn.addEventListener('click', () => {
+        alert('Download feature: This would trigger download of the image');
+      });
     }
-  }
 
-  // Touch support for carousel
-  carousel.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  });
-
-  carousel.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    if (touchStartX - touchEndX > 50) {
-      nextSlide();
-    } else if (touchEndX - touchStartX > 50) {
-      prevSlide();
+    if (shareBtn) {
+      shareBtn.addEventListener('click', () => {
+        if (navigator.share) {
+          navigator.share({
+            title: 'Wedding Photo',
+            text: 'Check out this wedding photo!',
+            url: previewImage.src
+          }).catch(() => {
+            alert('Share feature: Share this image on social media');
+          });
+        } else {
+          alert('Share feature: Share this image on social media');
+        }
+      });
     }
-    resetAutoplay();
-  });
 
-  // Control buttons
-  document.getElementById('downloadBtn').addEventListener('click', () => {
-    alert('Download feature: This would trigger download of the image');
-  });
-
-  document.getElementById('shareBtn').addEventListener('click', () => {
-    alert('Share feature: Share this image on social media');
-  });
-
-  document.getElementById('zoomBtn').addEventListener('click', () => {
-    previewImage.style.transform = 
-      previewImage.style.transform === 'scale(1.5)' ? 'scale(1)' : 'scale(1.5)';
-  });
-
-  // Initialize
-  initIndicators();
-  startAutoplay();
-
-  // Pause autoplay on hover
-  carousel.addEventListener('mouseenter', () => {
-    clearInterval(autoplayInterval);
-  });
-
-  carousel.addEventListener('mouseleave', () => {
-    startAutoplay();
+    if (zoomBtn) {
+      zoomBtn.addEventListener('click', () => {
+        if (previewImage) {
+          previewImage.style.transform = 
+            previewImage.style.transform === 'scale(1.5)' ? 'scale(1)' : 'scale(1.5)';
+        }
+      });
+    }
   });
 </script>
 
