@@ -3741,6 +3741,82 @@ padding:1.2rem;
           <div class="gallery-item-label">Engagement</div>
         </div>
       </div>
+      <div class="gallery-item" data-index="0">
+        <img src="images/2.jpg" alt="Wedding Photo 1" loading="lazy">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-label">Engagement</div>
+        </div>
+      </div>
+      <div class="gallery-item" data-index="0">
+        <img src="images/3.jpg" alt="Wedding Photo 1" loading="lazy">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-label">Engagement</div>
+        </div>
+      </div>
+      
+      <div class="gallery-item" data-index="0">
+        <img src="images/4.jpg" alt="Wedding Photo 1" loading="lazy">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-label">Engagement</div>
+        </div>
+      </div>
+      
+      <div class="gallery-item" data-index="0">
+        <img src="images/5.jpg" alt="Wedding Photo 1" loading="lazy">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-label">Engagement</div>
+        </div>
+      </div>
+      
+      <div class="gallery-item" data-index="0">
+        <img src="images/6.png" alt="Wedding Photo 1" loading="lazy">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-label">Engagement</div>
+        </div>
+      </div>
+      
+      <div class="gallery-item" data-index="0">
+        <img src="images/7.png" alt="Wedding Photo 1" loading="lazy">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-label">Engagement</div>
+        </div>
+      </div>
+      
+      <div class="gallery-item" data-index="0">
+        <img src="images/8.jpg" alt="Wedding Photo 1" loading="lazy">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-label">Engagement</div>
+        </div>
+      </div>
+      
+      <div class="gallery-item" data-index="0">
+        <img src="images/9.jpg" alt="Wedding Photo 1" loading="lazy">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-label">Engagement</div>
+        </div>
+      </div>
+      
+      <div class="gallery-item" data-index="0">
+        <img src="images/10.jpg" alt="Wedding Photo 1" loading="lazy">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-label">Engagement</div>
+        </div>
+      </div>
+      
+      <div class="gallery-item" data-index="0">
+        <img src="images/11.jpg" alt="Wedding Photo 1" loading="lazy">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-label">Engagement</div>
+        </div>
+      </div>
+      
+      <div class="gallery-item" data-index="0">
+        <img src="images/12.jpg" alt="Wedding Photo 1" loading="lazy">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-label">Engagement</div>
+        </div>
+      </div>
+       
       <!-- Add all your other gallery items here -->
     </div>
 
@@ -4107,6 +4183,8 @@ padding:1.2rem;
     }
   });
 </script>
+
+
 
 
 
@@ -4732,74 +4810,309 @@ padding:1.2rem;
     </div>
   </div>
 </footer>
-
 <style>
-  .music-btn{
-position:fixed;
-bottom:20px;
-right:20px;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-width:55px;
-height:55px;
-
-border:none;
-border-radius:50%;
-
-background:linear-gradient(135deg,#ff6a88,#ff9472);
-color:white;
-font-size:20px;
-
-cursor:pointer;
-
-box-shadow:0 5px 15px rgba(0,0,0,0.25);
-
-transition:all .3s ease;
-z-index:999;
-}
-
-.music-btn:hover{
-transform:scale(1.1);
-}
-
-.music-btn.playing{
-animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-0%{box-shadow:0 0 0 0 rgba(255,120,120,0.7)}
-70%{box-shadow:0 0 0 15px rgba(255,120,120,0)}
-100%{box-shadow:0 0 0 0 rgba(255,120,120,0)}
-}
+  /* MUSIC BUTTON */
+  .music-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    
+    width: 65px;
+    height: 65px;
+    
+    border: none;
+    border-radius: 50%;
+    
+    background: linear-gradient(135deg, #ff6a88 0%, #ff9472 100%);
+    color: white;
+    font-size: 24px;
+    
+    cursor: pointer;
+    
+    box-shadow: 0 8px 25px rgba(255, 106, 136, 0.4),
+                0 0 0 0 rgba(255, 150, 114, 0.1);
+    
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 999;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .music-btn:hover {
+    transform: scale(1.15);
+    box-shadow: 0 12px 35px rgba(255, 106, 136, 0.5),
+                0 0 0 0 rgba(255, 150, 114, 0.2);
+  }
+  
+  .music-btn:active {
+    transform: scale(0.95);
+  }
+  
+  .music-btn.playing {
+    animation: pulse 1.8s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 8px 25px rgba(255, 106, 136, 0.4),
+                  0 0 0 0 rgba(255, 150, 114, 0.5);
+    }
+    50% {
+      box-shadow: 0 8px 25px rgba(255, 106, 136, 0.4),
+                  0 0 0 20px rgba(255, 150, 114, 0);
+    }
+    100% {
+      box-shadow: 0 8px 25px rgba(255, 106, 136, 0.4),
+                  0 0 0 0 rgba(255, 150, 114, 0);
+    }
+  }
+  
+  /* MODAL */
+  .music-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.1), rgba(255, 192, 203, 0.1)), 
+                linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+    backdrop-filter: blur(8px);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    z-index: 1000;
+    
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .modal-box {
+    background: linear-gradient(135deg, #ffffff 0%, #fff5f7 100%);
+    padding: 60px 50px;
+    border-radius: 25px;
+    text-align: center;
+    max-width: 420px;
+    
+    box-shadow: 0 25px 70px rgba(255, 106, 136, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+    
+    backdrop-filter: blur(10px);
+    
+    animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    
+    border: 1px solid rgba(255, 192, 203, 0.3);
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(60px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* HEART ICON */
+  .heart-icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+    display: inline-block;
+    animation: heartBeat 1.2s infinite;
+  }
+  
+  @keyframes heartBeat {
+    0%, 100% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(1.1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+  
+  /* NAMES */
+  .couple-names {
+    margin: 25px 0;
+  }
+  
+  .couple-names h2 {
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff6a88 0%, #ff9472 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 10px 0;
+    letter-spacing: 1px;
+  }
+  
+  .couple-names .divider {
+    font-size: 24px;
+    color: #ffb3c1;
+    margin: 5px 0;
+  }
+  
+  /* TITLE */
+  .modal-box h3 {
+    font-size: 20px;
+    margin: 30px 0 20px 0;
+    color: #555;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  
+  .modal-box p {
+    font-size: 15px;
+    color: #999;
+    margin: 0 0 40px 0;
+    line-height: 1.8;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  
+  /* BUTTONS */
+  .modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  .modal-box button {
+    padding: 14px 35px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    
+    cursor: pointer;
+    
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    flex: 1;
+  }
+  
+  #startMusic {
+    background: linear-gradient(135deg, #ff6a88 0%, #ff9472 100%);
+    color: white;
+    box-shadow: 0 8px 20px rgba(255, 106, 136, 0.3);
+  }
+  
+  #startMusic:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(255, 106, 136, 0.4);
+  }
+  
+  #closeModal {
+    background: transparent;
+    color: #999;
+    border: 2px solid #ffb3c1;
+    box-shadow: none;
+  }
+  
+  #closeModal:hover {
+    background: #fff5f7;
+    color: #ff6a88;
+    border-color: #ff6a88;
+  }
+  
+  .modal-box button:active {
+    transform: translateY(-1px);
+  }
+  
 </style>
+
 <!-- AUDIO -->
 <audio id="weddingMusic" loop>
   <source src="audio/music.MP3" type="audio/mpeg">
 </audio>
 
-<!-- PLAY BUTTON -->
-<button id="musicToggle" class="music-btn">
-  ▶
-</button>
+<!-- MODAL -->
+<div id="musicModal" class="music-modal">
+  <div class="modal-box">
+    <div class="heart-icon">💕</div>
+    
+    <div class="couple-names">
+      <h2>Krishna</h2>
+      <div class="divider">&</div>
+      <h2>Mayuri</h2>
+    </div>
+    
+    <p>Celebrate the union of two souls with us</p>
+    
+    <div class="modal-buttons">
+      <button id="startMusic">Open Invitation</button>
+      <!-- <button id="closeModal">Exit</button> -->
+    </div>
+  </div>
+</div>
+
+<!-- FLOAT BUTTON -->
+<button id="musicToggle" class="music-btn">▶</button>
+
 <script>
-  const music = document.getElementById("weddingMusic");
+
+const music = document.getElementById("weddingMusic");
 const btn = document.getElementById("musicToggle");
+const modal = document.getElementById("musicModal");
+const startBtn = document.getElementById("startMusic");
+const closeBtn = document.getElementById("closeModal");
 
-btn.addEventListener("click", () => {
-
-if(music.paused){
-    music.play();
-    btn.innerHTML = "⏸";
-    btn.classList.add("playing");
-}else{
-    music.pause();
-    btn.innerHTML = "▶";
-    btn.classList.remove("playing");
-}
-
+/* PLAY FROM MODAL */
+startBtn.addEventListener("click", () => {
+  music.play();
+  modal.style.display="none";
+  btn.innerHTML="⏸";
+  btn.classList.add("playing");
 });
+
+/* CLOSE MODAL */
+closeBtn.addEventListener("click", () => {
+  modal.style.display="none";
+});
+
+/* TOGGLE BUTTON */
+btn.addEventListener("click", () => {
+  if(music.paused){
+    music.play();
+    btn.innerHTML="⏸";
+    btn.classList.add("playing");
+  }else{
+    music.pause();
+    btn.innerHTML="▶";
+    btn.classList.remove("playing");
+  }
+});
+
 </script>
-
-
 
 
 <script>
